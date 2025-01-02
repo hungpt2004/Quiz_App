@@ -88,7 +88,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 🌐 Connect with Us
 Author: Pham Trong Hung
 Email: hungptfpt2004@gmail.com
-LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/ph%E1%BA%A1m-tr%E1%BB%8Dng-h%C3%B9ng-a58a51339/)
+LinkedIn: [Linked Profile](https://www.linkedin.com/in/ph%E1%BA%A1m-tr%E1%BB%8Dng-h%C3%B9ng-a58a51339/)
 Feel free to reach out for any queries or suggestions!
 
 Happy coding! 🎉
