@@ -33,7 +33,7 @@ Ensure you have the following installed on your system:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/flutter_quiz_app.git
+   git clone https://github.com/hungpt2004/flutter_quiz_app.git
    cd flutter_quiz_app
 Install dependencies:
 flutter pub get
