@@ -41,43 +41,45 @@ Run the app:
 - flutter run
 
 🛠️ Project Structure
-flutter_quiz_app/
-├── android/                # Android-specific configurations
-├── ios/                    # iOS-specific configurations
-├── linux/                  # Linux-specific configurations
-├── macos/                  # macOS-specific configurations
-├── windows/                # Windows-specific configurations
-├── web/                    # Web application files
-├── assets/                 # Static assets for the app
-│   ├── animation/          # Animation files
-│   ├── chatbox/            # Chatbox-related assets (if applicable)
-│   └── svg/                # SVG files
-├── lib/                    # Main source code for the Flutter app
-│   ├── bloc/               # State management (BLoC)
-│   ├── components/         # Reusable widgets
-│   ├── constant/           # Constants used throughout the app
-│   ├── model/              # Data models and entities
-│   ├── service/            # Services, API calls, and business logic
-│   ├── sql/                # Local database logic (e.g., SQLite)
-│   ├── theme/              # App themes (colors, typography)
-│   ├── views/              # UI screens
-│   └── main.dart           # Entry point of the Flutter application
-├── test/                   # Unit and widget tests
-├── build/                  # Generated build files (should be ignored in Git)
-├── .gitignore              # Specifies files and directories to ignore in Git
-├── pubspec.yaml            # Dependency and asset configuration
-├── pubspec.lock            # Dependency version lock file
-├── README.md               # Project documentation
-├── analysis_options.yaml   # Linting rules for static code analysis
-└── flutter_quiz_app.iml    # IntelliJ IDEA configuration file (optional)
-
+   ```bash
+      flutter_quiz_app/
+   ├── android/                # Android-specific configurations
+   ├── ios/                    # iOS-specific configurations
+   ├── linux/                  # Linux-specific configurations
+   ├── macos/                  # macOS-specific configurations
+   ├── windows/                # Windows-specific configurations
+   ├── web/                    # Web application files
+   ├── assets/                 # Static assets for the app
+   │   ├── animation/          # Animation files
+   │   ├── chatbox/            # Chatbox-related assets (if applicable)
+   │   └── svg/                # SVG files
+   ├── lib/                    # Main source code for the Flutter app
+   │   ├── bloc/               # State management (BLoC)
+   │   ├── components/         # Reusable widgets
+   │   ├── constant/           # Constants used throughout the app
+   │   ├── model/              # Data models and entities
+   │   ├── service/            # Services, API calls, and business logic
+   │   ├── sql/                # Local database logic (e.g., SQLite)
+   │   ├── theme/              # App themes (colors, typography)
+   │   ├── views/              # UI screens
+   │   └── main.dart           # Entry point of the Flutter application
+   ├── test/                   # Unit and widget tests
+   ├── build/                  # Generated build files (should be ignored in Git)
+   ├── .gitignore              # Specifies files and directories to ignore in Git
+   ├── pubspec.yaml            # Dependency and asset configuration
+   ├── pubspec.lock            # Dependency version lock file
+   ├── README.md               # Project documentation
+   ├── analysis_options.yaml   # Linting rules for static code analysis
+   └── flutter_quiz_app.iml    # IntelliJ IDEA configuration file (optional)
+```
 
 📦 Dependencies
 The app uses the following dependencies:
-bloc: State management
-flutter_svg: For rendering SVG images
-http: For fetching quiz data (if API integration is enabled)
-shared_preferences: For storing user progress
+- bloc: State management
+- flutter_svg: For rendering SVG images
+- http: For fetching quiz data (if API integration is enabled)
+- shared_preferences: For storing user progress
+- ....
 
 
 📜 License
