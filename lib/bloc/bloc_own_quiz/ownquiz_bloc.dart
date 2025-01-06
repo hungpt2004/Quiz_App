@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_own_quiz/ownquiz_bloc_event.dart';
 import 'package:flutter_quiz_app/bloc/bloc_own_quiz/ownquiz_bloc_state.dart';
-
-import '../../model/question.dart';
 import '../../model/quiz.dart';
 import '../../sql/sql_helper.dart';
 
@@ -35,8 +33,6 @@ class OwnQuizBloc extends Bloc<OwnQuizEvent, OwnQuizState> {
   Future<void> _onLoadingFavorite(OnPressedLoadingFavorite event, Emitter<OwnQuizState> emit) async {
     try {
       final favorites = await DBHelper.instance.getAllFavoriteByUserId(event.userId);
-      //get quiz by quiz id
-      //phat ra 1 danh sach question list ben trong quiz
       final quizzes = await Future.wait<Map<String, dynamic>>(
           favorites.map((quiz) async {
             final quizData = await DBHelper.instance.getQuizById(quiz['quiz_id']);

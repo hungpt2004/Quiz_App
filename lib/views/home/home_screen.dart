@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          child: FormChatBoxWidget()
+          child: const FormChatBoxWidget()
         );
       },
     );
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Stack(
       children: [
         CustomScrollView(
-          controller: _scrollController,
+          // controller: _scrollController,
           slivers: [
             SliverAppBar(
               floating: false,

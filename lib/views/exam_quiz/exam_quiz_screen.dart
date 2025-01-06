@@ -38,7 +38,6 @@ class _ExamQuizScreenState extends State<ExamQuizScreen> {
 
   @override
   void initState() {
-    print('TEN USER HIEN TAI ${user!.name}');
     OwnQuizBloc.loadingQuiz(context, user!.id!);
     super.initState();
   }
@@ -342,8 +341,7 @@ class _ExamQuizScreenState extends State<ExamQuizScreen> {
     );
   }
 
-  Widget _cardQuiz(Map<String, dynamic> quiz, NetworkImageWidget networkImage,
-      TextStyleCustom textStyle) {
+  Widget _cardQuiz(Map<String, dynamic> quiz, NetworkImageWidget networkImage, TextStyleCustom textStyle) {
     return Slidable(
       key: ValueKey(quiz['id']), // Khóa duy nhất để nhận dạng Slidable
       endActionPane: ActionPane(

@@ -176,23 +176,7 @@ class _CardQuizWidgetState extends State<CardQuizWidget> {
                                     fit: BoxFit.cover)),
                             child: Stack(
                               children: [
-                                FutureBuilder(
-                                  future: precacheImage(
-                                      CachedNetworkImageProvider(
-                                          quizIndex['url']),
-                                      context),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return _loadingOverlay(); // Loading state
-                                    } else if (snapshot.hasError) {
-                                      return _errorOverlay(); // Error state
-                                    } else {
-                                      return const SizedBox
-                                          .shrink(); // Success state, show nothing
-                                    }
-                                  },
-                                ),
+
                                 _overlay(),
                                 Positioned(
                                   top: 10,

@@ -17,7 +17,6 @@ class PinBloc extends Bloc<PinEvent, PinState> {
     try {
       String pinCode = '${event.num1}${event.num2}${event.num3}${event.num4}${event.num5}${event.num6}';
       pinCode = pinCode.trim();
-      emit(PinSuccess(success: 'You enter $pinCode',pin: pinCode));
     } catch (e) {
       emit(PinFail(error: e.toString()));
       throw Exception(e.toString());
