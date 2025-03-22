@@ -191,7 +191,7 @@ class DBHelper {
   //Create name database
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDatabase('DATABASEMOINHAT.db');
+    _database = await _initDatabase('SuaDatabase.db');
     return _database!;
   }
 
@@ -1447,23 +1447,35 @@ class DBHelper {
       {
         'name': 'Try to upgrade rank',
         'value': 10,
-        'rank_id': 1,
+        'rank_id': 1, // Bronze
       },
       {
         'name': 'Welcome to Silver Member',
         'value': 20,
-        'rank_id': 2,
+        'rank_id': 2, // Silver
+      },
+      {
+        'name': 'Gold Rush',
+        'value': 30,
+        'rank_id': 3, // Gold
+      },
+      {
+        'name': 'Diamond Rewards',
+        'value': 40,
+        'rank_id': 4, // Diamond
       },
       {
         'name': 'Master Quiz',
         'value': 60,
-        'rank_id': 5,
+        'rank_id': 5, // Master
       },
     ];
+
     for (final discount in discounts) {
       await db.insert('DISCOUNT', discount);
     }
   }
+
 
   // I N S E R T -- T Y P E
   Future<void> insertTypes(Database db) async {
@@ -1580,7 +1592,7 @@ class DBHelper {
       throw Exception('Please enter different the old password');
     }
     return db.update('USER', {'password': newPassword},
-        where: 'id = ?', whereArgs: [user!.id]);
+        where: 'id = ?', whereArgs: [user.id]);
   }
 
   Future<int> updateUserTotalScore(int score, int userId) async {
@@ -1630,7 +1642,6 @@ class DBHelper {
 
   // G E T _ P A S S W O R D - B Y - U S E R - I D
   Future<String> getPasswordByUserId(String email) async {
-    final db = await instance.database;
     User? user = await getUserByEmail(email);
     return user!.password;
   }
@@ -1670,7 +1681,6 @@ class DBHelper {
           throw Exception('Error already request for $email');
         }
       } else {
-        print("DANG O DAY");
         Pin newPin = Pin(userId: user.id!, pinCode: password);
         await db.insert('PIN', newPin.toMap());
         print('DA INSERT NEW PIN NULL');
@@ -1990,8 +2000,7 @@ class DBHelper {
 
   Future<CompletedQuiz?> getCompleteQuizByQuizIdAndUserId(int userId) async {
     final db = await DBHelper.instance.database;
-    final List<Map<String, dynamic>> completes = await db
-        .query('COMPLETED_QUIZ', where: 'user_id = ?', whereArgs: [userId]);
+    final List<Map<String, dynamic>> completes = await db .query('COMPLETED_QUIZ', where: 'user_id = ?', whereArgs: [userId]);
     print('Complete cua user');
     if (completes.isNotEmpty) {
       return CompletedQuiz.fromMap(completes.first);

@@ -43,15 +43,15 @@ class QuizDetailScreen extends StatelessWidget {
               _image(context),
             ],
           ),
-          BoxHeight(h: 20),
+          const BoxHeight(h: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Column(
               children: [
                 QuizLabelTextWidget(label: 'Name', content: quiz.title),
-                BoxHeight(h: 10),
-                QuizLabelTextWidget(label: 'About', content:''),
-                BoxHeight(h: 10),
+                const BoxHeight(h: 10),
+                const QuizLabelTextWidget(label: 'About', content:''),
+                const BoxHeight(h: 10),
                 _textDot('* ${quiz.description}', textStyle),
                 _textDot('* ${quiz.price == 0 ? 'Free Quiz' : '${quiz.price}\$/quiz'}', textStyle),
                 _textDot('* ${quiz.typeId != 1 ? 'True/False Quiz' : 'Multiple Choice Quiz'}', textStyle),

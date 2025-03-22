@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_cart/cart_bloc.dart';
@@ -8,7 +6,6 @@ import 'package:flutter_quiz_app/bloc/bloc_cart/cart_bloc_state.dart';
 import 'package:flutter_quiz_app/components/appbar/appbar_field.dart';
 import 'package:flutter_quiz_app/components/box/box_width.dart';
 import 'package:flutter_quiz_app/components/button/button_field.dart';
-import 'package:flutter_quiz_app/components/button/button_icon.dart';
 import 'package:flutter_quiz_app/components/snackbar/not_yet_noti.dart';
 import 'package:flutter_quiz_app/components/snackbar/scaffold_snackbar_msg.dart';
 import 'package:flutter_quiz_app/service/payment/payment_service.dart';
@@ -19,9 +16,7 @@ import 'package:flutter_quiz_app/theme/network_image.dart';
 import 'package:flutter_quiz_app/theme/responsive_size.dart';
 import 'package:flutter_quiz_app/theme/text_style.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
 import '../../components/box/box_height.dart';
-import '../../model/cart.dart';
 import '../../model/discount.dart';
 import '../../model/quiz.dart';
 import '../../model/user.dart';
@@ -360,7 +355,7 @@ class _CartScreenState extends State<CartScreen> {
           if(snapshot.connectionState == ConnectionState.waiting){
             return const Center(child: CircularProgressIndicator(),);
           } else if (!snapshot.hasData) {
-            return const Text('No have data');
+            return Text('${snapshot.data}');
           } else if (snapshot.hasError) {
             return const Text('Have an error');
           }

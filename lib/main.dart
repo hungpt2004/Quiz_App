@@ -10,7 +10,6 @@ import 'package:flutter_quiz_app/bloc/bloc_pin/pin_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_question/question_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_quiz/quiz_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_send_email/email_bloc.dart';
-import 'package:flutter_quiz_app/service/shared_preferences/singleton_user_manage.dart';
 import 'package:flutter_quiz_app/sql/sql_helper.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'components/routes/app_routes.dart';

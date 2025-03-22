@@ -1,13 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_quiz_app/bloc/bloc_auth/auth_bloc.dart';
-import 'package:flutter_quiz_app/bloc/bloc_auth/auth_bloc_state.dart';
 import 'package:flutter_quiz_app/bloc/bloc_cart/cart_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_cart/cart_bloc_state.dart';
-import 'package:flutter_quiz_app/components/box/box_width.dart';
 import 'package:flutter_quiz_app/theme/color.dart';
-import 'package:flutter_quiz_app/theme/responsive_size.dart';
 import 'package:flutter_quiz_app/theme/text_style.dart';
 import 'package:flutter_quiz_app/views/cart/cart_screen.dart';
 import 'package:flutter_quiz_app/views/exam_quiz/exam_quiz_screen.dart';
@@ -15,11 +11,9 @@ import 'package:flutter_quiz_app/views/favorite/favorite_screen.dart';
 import 'package:flutter_quiz_app/views/home/home_screen.dart';
 import 'package:flutter_quiz_app/views/profile/profile_screen.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../model/cart.dart';
 import '../../model/user.dart';
 import '../../service/shared_preferences/singleton_user_manage.dart';
-import '../../sql/sql_helper.dart';
 
 class BottomNavbarScreen extends StatefulWidget {
   const BottomNavbarScreen({super.key});
@@ -62,7 +56,6 @@ class _BottomNavbarScreenState extends State<BottomNavbarScreen> {
         body: pages[_currentIndex],
         floatingActionButton: _centerButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         bottomNavigationBar: _bottomAppBar());
   }
 
@@ -71,20 +64,20 @@ class _BottomNavbarScreenState extends State<BottomNavbarScreen> {
     return Column(
       children: [
         MaterialButton(
-            animationDuration: Duration(milliseconds: 300),
-            highlightColor: Colors.transparent, // Loại bỏ màu khi giữ nút
-            splashColor: Colors.transparent, // Loại bỏ hiệu ứng splash
-            onPressed: () {
-              _toggleIndex(index);
-            },
-            child: SvgPicture.asset(
-                _currentIndex == index
-                    ? "assets/svg/$urlToggle"
-                    : "assets/svg/$urlDefault",
-                width: 25,
-                height: 25)
+          animationDuration: Duration(milliseconds: 300),
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          onPressed: () {
+            _toggleIndex(index);
+          },
+          child: SvgPicture.asset(
+            _currentIndex == index
+                ? "assets/svg/$urlToggle"
+                : "assets/svg/$urlDefault",
+            width: 18, // Adjust for larger screens
+            height: 18,
+          ),
         ),
-        AnimatedContainer(duration: Duration(milliseconds: 300) ,width: 10,height: 2,decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: _currentIndex == index ? primaryColor : Colors.grey),)
       ],
     );
   }
@@ -122,25 +115,28 @@ class _BottomNavbarScreenState extends State<BottomNavbarScreen> {
   //Body
   Widget _bottomAppBar() {
     return BottomAppBar(
-      height: StyleSize(context).heightPercent(80),
+      height: 90,
       color: fullColor,
       shape: const CircularNotchedRectangle(),
-      notchMargin: BorderSide.strokeAlignOutside,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _button('home_click.svg', 'home.svg', 0),
-          _button('quiz_click.svg', 'quiz.svg', 1),
-          _button('hear_click.svg', 'hear.svg', 3),
-          _button('account_click.svg', 'account.svg', 4),
-        ],
+      notchMargin: BorderSide.strokeAlignCenter, // Adjusted notch margin for better alignment
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Distribute buttons evenly
+          children: [
+            Expanded(flex: 1, child: _button('home_click.svg', 'home.svg', 0),),
+            Expanded(flex: 1, child:  _button('quiz_click.svg', 'quiz.svg', 1),),
+            Expanded(flex: 1, child:  _button('hear_click.svg', 'hear.svg', 3),),
+            Expanded(flex: 1, child:  _button('account_click.svg', 'account.svg', 4),)
+          ],
+        ),
       ),
     );
   }
 
+
   Widget _bodyRenderCenterButton(int length){
     return SizedBox(
-        width: StyleSize(context).widthPercent(60),
         child: Stack(
           children: [
             FloatingActionButton(
@@ -150,20 +146,21 @@ class _BottomNavbarScreenState extends State<BottomNavbarScreen> {
                 backgroundColor: primaryColor,
                 elevation: 5,
                 hoverElevation: 25,
+                mini: true,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20), side: BorderSide.none),
                 child: SvgPicture.asset(
                   'assets/svg/shopping.svg',
-                  width: 30,
-                  height: 30,
+                  width: MediaQuery.of(context).size.width * 0.07,
+                  height: MediaQuery.of(context).size.width * 0.07,
                 )
             ),
             Positioned(
               top: 0,
               right: 0,
               child: Container(
-                width: 20,
-                height: 20,
+                width: MediaQuery.of(context).size.width * 0.05,
+                height: MediaQuery.of(context).size.width * 0.05,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.deepOrangeAccent

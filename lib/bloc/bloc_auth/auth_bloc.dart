@@ -4,8 +4,6 @@ import 'package:flutter_quiz_app/bloc/bloc_auth/auth_bloc_event.dart';
 import 'package:flutter_quiz_app/bloc/bloc_auth/auth_bloc_state.dart';
 import 'package:flutter_quiz_app/service/shared_preferences/local_data_save.dart';
 import 'package:flutter_quiz_app/sql/sql_helper.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../model/user.dart';
 
 class AuthBloc extends Bloc<AuthEvent,AuthState>{
@@ -26,7 +24,6 @@ class AuthBloc extends Bloc<AuthEvent,AuthState>{
       if(user != null) {
         if(user.username == event.username && user.password == event.password) {
           await LocalSaveData().saveDataUserLocal(user);
-          print('User trong BLOC ${user.name}');
           emit(LoginSuccess(user: user));
         } else {
           emit(LoginFailure(error: 'Wrong password or username'));

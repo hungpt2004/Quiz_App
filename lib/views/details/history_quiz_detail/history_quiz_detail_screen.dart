@@ -53,11 +53,11 @@ class _HistoryQuizDetailScreenState extends State<HistoryQuizDetailScreen> {
             floating: false, // Không nổi trên màn hình
             pinned: true, // Giữ lại phần appBar khi cuộn
             flexibleSpace: FlexibleSpaceBar(
-              stretchModes: [
+              stretchModes: const [
                 StretchMode.zoomBackground, // Phóng to hình ảnh
                 StretchMode.fadeTitle, // Làm mờ tiêu đề
               ],
-              title: Text(
+              title: const Text(
                 'DETAIL YOUR QUIZ',
                 style: TextStyle(color: Colors.white), // Màu chữ tiêu đề
               ),
@@ -89,26 +89,26 @@ class _HistoryQuizDetailScreenState extends State<HistoryQuizDetailScreen> {
         future: DBHelper.instance.getQuizById(quizId),
         builder: (context, snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting){
-            return Center(child: CircularProgressIndicator(),);
+            return const Center(child: CircularProgressIndicator(),);
           } else if (!snapshot.hasData) {
-            return Text('No have data');
+            return const Text('No have data');
           } else if (snapshot.hasError) {
-            return Text('Have an error');
+            return const Text('Have an error');
           }
           final quizIndex = snapshot.data!;
           return FutureBuilder(
               future: DBHelper.instance.getQuestionListByQuizId(quizIndex.id!),
               builder: (context, snapshot) {
                 if(snapshot.connectionState == ConnectionState.waiting){
-                  return Center(child: CircularProgressIndicator(),);
+                  return const Center(child: CircularProgressIndicator(),);
                 } else if (!snapshot.hasData) {
-                  return Text('No have data');
+                  return const Text('No have data');
                 } else if (snapshot.hasError) {
-                  return Text('Have an error');
+                  return const Text('Have an error');
                 }
                 final questionList = snapshot.data!;
                 return ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: questionList.length,
                   itemBuilder: (context, index) {
@@ -135,7 +135,7 @@ class _HistoryQuizDetailScreenState extends State<HistoryQuizDetailScreen> {
         color: fullColor,
         child: Column(
           children: [
-            BoxHeight(h: 20),
+            const BoxHeight(h: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
@@ -145,9 +145,9 @@ class _HistoryQuizDetailScreenState extends State<HistoryQuizDetailScreen> {
                 ],
               ),
             ),
-            BoxHeight(h: 20),
+            const BoxHeight(h: 20),
             ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: listAnswer.length,
               itemBuilder: (context, index) {
@@ -167,7 +167,7 @@ class _HistoryQuizDetailScreenState extends State<HistoryQuizDetailScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
-        margin: EdgeInsets.only(bottom: 15),
+        margin: const EdgeInsets.only(bottom: 15),
         height: 50,
         width: StyleSize(context).widthPercent(100),
         decoration: BoxDecoration(
@@ -180,7 +180,7 @@ class _HistoryQuizDetailScreenState extends State<HistoryQuizDetailScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              BoxWidth(w: 15),
+              const BoxWidth(w: 15),
               Expanded(child: Text(answerIndex,style: textStyle.superSmallTextStyle(FontWeight.w600, index != correctAnswer ? Colors.black : Colors.white),)),
             ],
           ),

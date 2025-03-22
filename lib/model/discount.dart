@@ -13,6 +13,9 @@ class Discount {
 
   // Chuyển đổi từ Map thành Discount
   factory Discount.fromMap(Map<String, dynamic> map) {
+    if(map['id'] == null || map['rank_id'] == null) {
+      throw ArgumentError("Missing information");
+    }
     return Discount(
       id: map['id'],
       rankId: map['rank_id'],

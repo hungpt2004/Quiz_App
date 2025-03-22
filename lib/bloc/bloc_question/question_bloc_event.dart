@@ -1,5 +1,3 @@
-import 'package:flutter_quiz_app/bloc/bloc_quiz/quiz_bloc_event.dart';
-
 import '../../model/question.dart';
 
 abstract class QuestionEvent {}

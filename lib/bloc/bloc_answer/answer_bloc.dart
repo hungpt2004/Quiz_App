@@ -1,12 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_answer/answer_bloc_event.dart';
 import 'package:flutter_quiz_app/bloc/bloc_answer/answer_bloc_state.dart';
 import 'package:flutter_quiz_app/sql/sql_helper.dart';
-
-import '../../model/question.dart';
 
 class AnswerBloc extends Bloc<AnswerEvent, AnswerState> {
 
@@ -22,14 +18,9 @@ class AnswerBloc extends Bloc<AnswerEvent, AnswerState> {
 
   void _onSelectAnswer(OnPressedSelectAnswer event, Emitter<AnswerState> emit) async {
     try {
-      //Tinh diem dua tren cau tra loi
-      print('Cau hoi hien tai: $currentQuestionIndex');
-      print('Cau tra loi dung: ${event.question['correct_answer']}');
       score += calculateScore(event.selectAnswer, event.question['correct_answer'],event.questionId, event.quizId);
 
       selectedAnswered[event.questionId] = event.selectAnswer;
-      print('CURRENT INDEX QUESTION : ${currentQuestionIndex}');
-      print('TONG SO CAU TRA LOI DUNG ${correctAnswerCount[event.quizId]}');
       //Kiem tra het cau hoi hay chua
       if(currentQuestionIndex > event.totalQuestion){
         currentQuestionIndex = 0; // Reset lại chỉ số câu hỏi

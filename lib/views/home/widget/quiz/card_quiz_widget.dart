@@ -183,18 +183,17 @@ class _CardQuizWidgetState extends State<CardQuizWidget> {
                                   right: 10,
                                   child: GestureDetector(
                                     onTap: () async {
-                                      if (quizIndex['isFavorite'] == 0) {
+                                      List favorites = await DBHelper.instance.getAllFavoriteByUserId(userCurrent!.id!);
+                                      bool check = favorites.any((item) => item['user_id'] == userCurrent!.id && item['quiz_id'] == quizIndex['id']);
+                                      if(check){
+                                        ShowScaffoldMessenger.showScaffoldMessengerUnsuccessfully(context, "Quiz already in favorite lists", textStyle);
+                                      } else {
                                         context.read<FavoriteBloc>().add(
                                             OnPressedAddFavorite(
                                                 Favorite(
                                                     userId: userCurrent!.id!,
                                                     quizId: quizIndex['id'],
                                                     createdAt: DateTime.now()),
-                                                quizIndex['id'],
-                                                userCurrent!.id!));
-                                      } else if (quizIndex['isFavorite'] == 1) {
-                                        context.read<FavoriteBloc>().add(
-                                            OnPressedRemoveFavorite(
                                                 quizIndex['id'],
                                                 userCurrent!.id!));
                                       }

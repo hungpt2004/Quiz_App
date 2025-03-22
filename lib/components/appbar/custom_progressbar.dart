@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quiz_app/theme/color.dart';
 import 'package:flutter_quiz_app/theme/text_style.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 

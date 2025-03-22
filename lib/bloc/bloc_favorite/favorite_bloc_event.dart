@@ -1,5 +1,4 @@
 import '../../model/favorite.dart';
-import '../../model/quiz.dart';
 
 abstract class FavoriteEvent {}
 

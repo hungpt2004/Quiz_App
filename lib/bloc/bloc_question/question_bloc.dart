@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_question/question_bloc_event.dart';
 import 'package:flutter_quiz_app/bloc/bloc_question/question_bloc_state.dart';
 import 'package:flutter_quiz_app/sql/sql_helper.dart';
-
 import '../../model/question.dart';
 
 class QuestionBloc extends Bloc<QuestionEvent, QuestionState> {

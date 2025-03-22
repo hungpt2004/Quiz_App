@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_send_email/email_bloc_event.dart';
 import 'package:flutter_quiz_app/bloc/bloc_send_email/email_bloc_state.dart';
-import 'package:flutter_quiz_app/service/send_email/password_random.dart';
 import 'package:flutter_quiz_app/service/send_email/send_email.dart';
-import 'package:flutter_quiz_app/sql/sql_helper.dart';
 
 class EmailBloc extends Bloc<EmailEvent, EmailState> {
   EmailBloc() : super(Initial()) {

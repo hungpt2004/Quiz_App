@@ -37,6 +37,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   void initState() {
     super.initState();
+    OwnQuizBloc.loadingFavorite(context, user!.id!);
     _scrollController.addListener(_scrollListener);
   }
 
@@ -65,7 +66,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         duration: const Duration(milliseconds: 200), curve: Curves.fastOutSlowIn);
   }
 
-  void showLeaderBoard() {
+  _showLeaderBoard() {
     if (mounted) {
       showDialog(
         context: context,
@@ -86,8 +87,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           content: FutureBuilder<List<Map<String, dynamic>>>(
-            future: DBHelper.instance
-                .getAllUserByDesc(), // Gọi phương thức lấy dữ liệu
+            future: DBHelper.instance.getAllUserByDesc(), // Gọi phương thức lấy dữ liệu
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
@@ -170,8 +170,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('Load list favorite lan 1');
-    OwnQuizBloc.loadingFavorite(context, user!.id!);
     return Scaffold(backgroundColor: fullColor, body: _body());
   }
 
@@ -204,7 +202,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             text: 'Leaderboard',
             icon: Icons.leaderboard,
             function: () {
-              showLeaderBoard();
+              _showLeaderBoard();
             })
       ],
     );
@@ -238,7 +236,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             'Points: ${user['total_score'] ?? 0}',
             style: textStyle.superSmallTextStyle(FontWeight.w500, Colors.black),
           ), // Điểm
-          trailing: IconButton(onPressed: (){}, icon: Icon(Icons.person,size: 30,)),
+          trailing: IconButton(onPressed: (){}, icon: const Icon(Icons.person,size: 30,)),
           ),
     );
   }
@@ -247,30 +245,28 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return BlocBuilder<OwnQuizBloc, OwnQuizState>(
       builder: (context, state) {
         if (state is OwnQuizLoadingFavorite) {
-          final favorites = state.favorites;
           final quizzes = state.quizzes;
           return BlocBuilder<FavoriteBloc, FavoriteState>(
             builder: (context, state) {
               //load own favorite lan 2
-              print('Load list favorite lan 2');
               OwnQuizBloc.loadingFavorite(context, user!.id!);
               return BlocListener<FavoriteBloc, FavoriteState>(
-                child: quizzes.isNotEmpty ? _listOwnFavorite(quizzes) : NotYetNoti(label: 'Favorite',image: 'assets/svg/heart_click.svg',),
+                child: quizzes.isNotEmpty ? _listOwnFavorite(quizzes) : const NotYetNoti(label: 'Favorite',image: 'assets/svg/heart_click.svg',),
                 listener: (context, state) {
-                  if (state is FavoriteLoading) {
-                    ShowScaffoldMessenger.showScaffoldMessengerLoading(
-                        context, textStyle);
-                  } else if (state is FavoriteAddSuccess) {
-                    ShowScaffoldMessenger.showScaffoldMessengerSuccessfully(
-                        context, state.text, textStyle);
-                  } else if (state is FavoriteAddFailure) {
-                    ShowScaffoldMessenger.showScaffoldMessengerUnsuccessfully(
-                        context, state.text, textStyle);
-                  } else if (state is FavoriteRemoveSuccess) {
-                    ShowScaffoldMessenger.showScaffoldMessengerSuccessfully(
-                        context, state.text, textStyle);
-                    Future.delayed(const Duration(milliseconds: 80),(){Navigator.pop(context);});
-                  }
+                  // if (state is FavoriteLoading) {
+                  //   ShowScaffoldMessenger.showScaffoldMessengerLoading(
+                  //       context, textStyle);
+                  // } else if (state is FavoriteAddSuccess) {
+                  //   ShowScaffoldMessenger.showScaffoldMessengerSuccessfully(
+                  //       context, state.text, textStyle);
+                  // } else if (state is FavoriteAddFailure) {
+                  //   ShowScaffoldMessenger.showScaffoldMessengerUnsuccessfully(
+                  //       context, state.text, textStyle);
+                  // } else if (state is FavoriteRemoveSuccess) {
+                  //   ShowScaffoldMessenger.showScaffoldMessengerSuccessfully(
+                  //       context, state.text, textStyle);
+                  //   Future.delayed(const Duration(milliseconds: 80),(){Navigator.pop(context);});
+                  // }
                 },
               );
             },

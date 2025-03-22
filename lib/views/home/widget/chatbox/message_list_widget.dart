@@ -17,7 +17,7 @@ class _MessageScreenState extends State<MessageScreen> {
   final textStyle = TextStyleCustom();
   @override
   Widget build(BuildContext context) {
-    const width = 400;
+    const width = 250;
     return ListView.separated(
       itemCount: widget.messages.length,
       itemBuilder: (context, index) {

@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quiz_app/bloc/bloc_cart/cart_bloc_event.dart';
 import 'package:flutter_quiz_app/bloc/bloc_cart/cart_bloc_state.dart';
-import 'package:flutter_quiz_app/components/exception/cart_exception.dart';
 import 'package:flutter_quiz_app/sql/sql_helper.dart';
-
-import '../../model/cart.dart';
 import '../../model/cart_items.dart';
 import '../../model/quiz.dart';
 
@@ -31,7 +28,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         Quiz? quiz = await DBHelper.instance.getQuizById(q['quiz_id']);
         sumOfBill += (quiz!.price! * q['quantity']);
       }
-      print('Tong bill $sumOfBill');
       emit(CartAddSuccess(cartItems,sumOfBill));
       //Neu add khong duoc
     } catch (e) {
@@ -56,7 +52,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         Quiz? quiz = await DBHelper.instance.getQuizById(q['quiz_id']);
         sumOfBill += (quiz!.price! * q['quantity']);
       }
-      print('Tong bill $sumOfBill');
       emit(CartRemoveSuccess(cartItems,sumOfBill));
     } catch (e) {
       List<Map<String, dynamic>> cartItems = await DBHelper.instance.getCartItemsByCartId(event.cartId);

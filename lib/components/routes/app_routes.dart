@@ -15,7 +15,6 @@ import 'package:flutter_quiz_app/views/home/home_screen.dart';
 import 'package:flutter_quiz_app/views/profile/change_password/change_password_profile.dart';
 import 'package:flutter_quiz_app/views/splash/splash_screen.dart';
 import 'package:flutter_quiz_app/views/test_page.dart';
-
 import '../../model/quiz.dart';
 import 'animation_routes.dart';
 
